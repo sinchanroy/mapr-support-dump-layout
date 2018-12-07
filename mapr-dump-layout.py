@@ -15,14 +15,21 @@ import commands
 
 ### name the output file with hostname and date
 st_hostname = commands.getoutput('cat hostname')
-st_date = commands.getoutput('cat date |awk \'{print $2$3}\'')
+date = commands.getoutput('cat system_info/date| grep -i ":" |awk \'{print $2$3}\'')
+st_date = date.replace(" ", "-")
 st_layout = "mapr-dump-layout_" + st_hostname.strip() + "_" + st_date.strip()
 print "file " + st_layout + " will be created under " + os.getcwd() + "\n"
 
+f_dumplayout = open(st_layout,"w+r")
 
-.
-..
-...
-....
-.....
-YET TO COMPLETE
+
+## General Info 
+f_dumplayout.write("--uname\n")
+f_dumplayout.write(commands.getoutput('cat system_info/uname_a | grep -i linux')+'\n')
+f_dumplayout.write("\n")
+
+
+
+
+f_dumplayout.close()
+
