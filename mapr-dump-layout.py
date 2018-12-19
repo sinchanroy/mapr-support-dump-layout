@@ -57,6 +57,10 @@ f_dumplayout.write('--network - ifconfig\n')
 f_dumplayout.write(commands.getoutput('cat system_info/ifconfig_a |egrep -i "inet|hwaddr"  | egrep -v "ether|loop|UP|127\.0\.0\.1|inet6|vif|tap"')+'\n')
 f_dumplayout.write("\n")
 
+f_dumplayout.write('-- mapr-cluster.conf \n')
+f_dumplayout.write(commands.getoutput('cat conf/mapr-conf/mapr-clusters.conf')+'\n')
+f_dumplayout.write("\n")
+
 
 f_dumplayout.close()
 
